@@ -1,0 +1,65 @@
+{% include 'base.html' %}
+{% block content %}
+
+{# add city #}
+    <div class="mx-auto" style="width: 200px;">
+    <form method="POST">
+        {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="btn btn-outline-primary">
+    </form>
+    </div>
+
+{# city display #}
+
+
+
+{#        <div class="row row-cols-1 row-cols-md-3 g-4">#}
+{#  <div class="col">#}
+{#    <div class="card h-100">#}
+{#      <img src="http://openweathermap.org/img/w/{{ cities.icon }}.png" class="card-img-top" alt="Hollywood Sign on The Hill"/>#}
+{#      <div class="card-body">#}
+{#        <h5 class="card-title">{{ cities.city}}</h5>#}
+{#          <h3 class="card-title">{{ cities.temperature }}°C</h3>#}
+{#        <p class="card-text">#}
+{#          {{ cities.description }}#}
+{#        </p>#}
+{#          <a href="#" class="btn btn-primary">Go somewhere</a>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#        </div>#}
+
+ {% for cities in data %}
+<div class="container">
+  <section class="mx-auto my-5" style="max-width: 23rem;">
+    <div class="card panels-card">
+      <div class="card-body rounded-bottom text-dark" style="background-color: whitesmoke;">
+        <div class="row">
+          <div class="col-6 p-1">
+            <div class="card" style="background-color: white;">
+              <div class="card-body pb-0">
+                <i class="fas fa-cloud fa-3x pb-4"></i>
+                <div class="d-flex justify-content-between">
+                  <p class="mb-0 h5">{{ cities.temperature }}&deg;</p>
+                  <p class="mb-0 hour">{% now "jS F Y H:i" %}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="card-body pt-0">
+                <h6 class="font-weight-bold mb-1">{{ cities.city}}</h6>
+                <p class="mb-0">{{ cities.description }}</p>
+                  <p class="mb-0">{{ cities.id }}</p>
+              </div>
+            </div>
+          </div>
+            <a class="btn btn-outline-primary" href="{% url 'delete city' cities.id %}">Delete</a>
+              </div>
+            </div>
+          </div>
+  </section>
+</div>
+    {% endfor %}
+
+
+{% endblock %}
