@@ -23,6 +23,7 @@ def index(request):
         r = requests.get(url.format(city.name)).json()
 
         city_weather = {
+            'id': city.id,
             'city': city.name,
             'temperature': r['main']['temp'],
             'description': r['weather'][0]['description'],
