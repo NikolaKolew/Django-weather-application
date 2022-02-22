@@ -13,9 +13,8 @@ def index(request):
         form = AddCity(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('index')
     else:
-        form = AddCity
+        form = AddCity()
 
     cities = City.objects.all()
 
@@ -38,6 +37,7 @@ def index(request):
     }
 
     return render(request, 'weather.html', context)
+
 
 def delete_city(request, pk):
     obj = get_object_or_404(City, pk=pk)
