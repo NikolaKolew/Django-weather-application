@@ -19,8 +19,10 @@
             <div class="card" style="background-color: white;">
               <div class="card-body pb-0">
                 <i class="fas fa-cloud fa-3x pb-4"></i>
-                <div class="d-flex justify-content-between">
+                  <div class="d-flex justify-content-between">
                   <p class="mb-0 h5">{{ cities.temperature }}&deg;</p>
+                      </div>
+                <div class="d-flex justify-content-between">
                   <p class="mb-0 hour">{% now "jS F Y H:i" %}</p>
                 </div>
               </div>
@@ -28,7 +30,6 @@
               <div class="card-body pt-0">
                 <h6 class="font-weight-bold mb-1">{{ cities.city}}</h6>
                 <p class="mb-0">{{ cities.description }}</p>
-                  <p class="mb-0">{{ cities.id }}</p>
               </div>
             </div>
           </div>

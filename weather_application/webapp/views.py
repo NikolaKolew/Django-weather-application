@@ -1,7 +1,7 @@
 import requests
 from django.shortcuts import render, redirect, get_object_or_404
 
-from weather_application.forms import CityForm
+from weather_application.webapp.forms import AddCity, DeleteCity
 from weather_application.webapp.models import City
 
 
@@ -10,12 +10,12 @@ def index(request):
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=5fcf342ac5bdc0962be23aa69e739dc2'
 
     if request.method == 'POST':
-        form = CityForm(request.POST)
+        form = AddCity(request.POST)
         if form.is_valid():
             form.save()
             return redirect('index')
     else:
-        form = CityForm
+        form = AddCity
 
     cities = City.objects.all()
 
@@ -42,12 +42,12 @@ def index(request):
 def delete_city(request, pk):
     obj = get_object_or_404(City, pk=pk)
     if request.method == 'POST':
-        form = CityForm(request.POST, instance=obj)
+        form = DeleteCity(request.POST, instance=obj)
         if form.is_valid():
             obj.delete()
             return redirect('index')
     else:
-        form = CityForm(instance=obj)
+        form = DeleteCity(instance=obj)
 
     context = {
         'obj': obj,

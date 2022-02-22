@@ -1,8 +1,33 @@
 {% include 'base.html' %}
 {% block content %}
-<form method="post">
+<form method="post" action="{% url 'delete city' obj.id %}">
 {% csrf_token %}
+    <div class="container">
+  <section class="mx-auto my-5" style="max-width: 23rem;">
+    <div class="card panels-card">
+      <div class="card-body rounded-bottom text-dark" style="background-color: whitesmoke;">
+        <div class="row">
+          <div class="col-6 p-1">
+            <div class="card" style="background-color: white;">
+              <div class="card-body pb-0">
+                <i class="fas fa-cloud fa-3x pb-4"></i>
+              </div>
+              <hr>
+              <div class="card-body pt-0">
+                <h6 class="font-weight-bold mb-1">{{ obj.name}}</h6>
+              </div>
+            </div>
+          </div>
+              </div>
+                Are you sure you want do delete {{ obj.name }}
+            </div>
+        <input type="submit" class="btn btn-outline-primary">
+
+        <a class="btn btn-outline-primary" href="{% url 'index' %}">Cansel</a>
+          </div>
+
+  </section>
+</div>
 {{ form }}
-<input type="submit">
 </form>
 {% endblock %}
